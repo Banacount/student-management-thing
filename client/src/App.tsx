@@ -1,14 +1,11 @@
-import { useState } from 'react'
+import LoginMenu from './loginMenu/LoginMenu.tsx'
 import './App.css'
 
 function App() {
-  const [yesh, setYesh] = useState("Hello world.");
 
   return (
     <>
-      <h1>{yesh}</h1>
-
-      <button onClick={() => { setYesh("Hello coders!") }}>I do programming btw</button>
+      <LoginMenu />
     </>
   )
 }

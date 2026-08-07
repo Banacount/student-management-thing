@@ -1,0 +1,21 @@
+
+.display-contain {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+.login-contain {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--fg-color);
+}
+.login-contain form {
+	display: inline-flex;
+	flex-direction: column;
+}
+.login-contain input {
+	width: 30rem;
+}
+.login-contain a {
+	color: var(--link-color);
+}
