@@ -1,0 +1,24 @@
+{
+  "name": "student-management-thing",
+  "version": "1.0.0",
+  "description": "A simple system written in javascript that uses the node runtime, This is primary in the perspective of teachers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Banacount/student-management-thing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Banacount/student-management-thing/issues"
+  },
+  "homepage": "https://github.com/Banacount/student-management-thing#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.4"
+  }
+}
