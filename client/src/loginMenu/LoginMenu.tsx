@@ -17,8 +17,8 @@ function LoginMenu () {
 					<Logo />
 
 					<form>
-						<input type="text" name='username' placeholder='Username' />
-						<input type="password" name='password' placeholder='Password' />
+						<input type="text" name='username' placeholder='Username' autoComplete='off' />
+						<input type="password" name='password' placeholder='Password' autoComplete='off' />
 					</form>
 
 					<a href="https://youtu.be/dQw4w9WgXcQ?si=V5uXpNAvSe2mCCJF">No account? Register.</a>
