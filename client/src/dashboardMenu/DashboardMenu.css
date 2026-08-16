@@ -1,0 +1,73 @@
+.dashboard-contain {
+	display: flex;
+	flex-direction: row;
+}
+
+.tool-panel {
+	width: 20rem;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--fg-color);
+}
+.page-title {
+	color: var(--bg-color);
+	font-weight: bolder;
+	font-size: 2rem;
+	padding-left: 0.4rem;
+	margin-top: 0.6rem;
+	box-sizing: border;
+}
+.tools-contain {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1.4rem;
+}
+.tools-contain button {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--btn-color);
+	background-color: transparent;
+	padding: 0.4rem;
+	border: 0px solid var(--btn-color);
+	border-bottom-width: 1px;
+	cursor: pointer;
+	transition: background-color 0.4s ease, color 1s ease;
+}
+.tools-contain button:hover {
+	background-color: var(--bg-color);
+	color: var(--fg-color);
+}
+.config-contain {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin-top: auto;
+	margin-bottom: 1rem;
+	gap: 1rem;
+	padding-left: 1.5rem;
+	box-sizing: border-box;
+}
+.config-contain img {
+	width: 2rem;
+	aspect-ratio: 1/1;
+	user-select: none;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+.config-contain img:hover {
+	transform: scale(1.1);
+}
+
+.info-panel {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	color: var(--fg-color);
+}
+
+.m-2 {
+	margin-top: 2rem;
+}
