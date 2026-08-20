@@ -42,26 +42,54 @@ app.get('/post', authenticationToken, (req, res) => {
 	res.json(posts.filter(post => post.username === username));
 });
 
+// Add post
+app.get('/add_post', authenticationToken, (req, res) => {
+	try {
+		const { id, username } = req.user;
+		const { post } = req.body;
+		let userIndex = -1;
+
+		for (let i = 0; i < posts.length; i++)
+			if (posts[i].username == username) userIndex = i;
+		
+		if (userIndex == -1) 
+			return res.status(400).json({ message: "User doesn't seem to exist" });
+
+		if (!post) 
+			return res.status(400).json({ message: "No post dud" });
+
+		posts[userIndex].post.push(post);
+		return res.status(200).json({ message: `Post has been added to ${username}.` });
+	} catch (err) {
+		return res.status(500).json({ message: "There was an error in the server." });
+	}
+});
+
 // Login route
 app.post('/login', async (req, res) => {
-	const { username, password  } = req.body;
-	
-	const user = posts.find(post => post.username == username);
-	if (!user) 
-		return res.status(400).json({ message: "The user does not seem to exist." });
+	try {
+		const { username, password  } = req.body;
+		
+		const user = posts.find(post => post.username == username);
+		if (!user) 
+			return res.status(400).json({ message: "The user does not seem to exist." });
 
-	const isPasswordCorrect = await bcrypt.compare(password, user.password);
-	if (!isPasswordCorrect)
-		return res.status(400).json({ message: "Invalid credentials dud." });
-	
+		const isPasswordCorrect = await bcrypt.compare(password, user.password);
+		if (!isPasswordCorrect)
+			return res.status(400).json({ message: "Invalid credentials dud." });
+		
 
-	const accessToken = jwt.sign(
-		{ id: user.id, username: user.username }, 
-		process.env.ACCESS_TOKEN_SECRET, 
-		{expiresIn: '5m'}
-	);
+		const accessToken = jwt.sign(
+			{ id: user.id, username: user.username }, 
+			process.env.ACCESS_TOKEN_SECRET, 
+			{expiresIn: '5m'}
+		);
 
-	res.status(200).json({ message: "Login successful.", accessToken });
+		res.status(200).json({ message: "Login successful.", accessToken });
+	}
+	catch (err) {
+		return res.status(500).json({ message: "An error happened in the server." })
+	}
 })
 
 // Register route
@@ -82,8 +110,10 @@ app.post('/register', async (req, res) => {
 			id: Date.now().toString(), 
 			username, 
 			password: hashed_password, 
-			post: post || "N/A"
+			post: []
 		};
+
+		newUser.post.push(post || "N/A");
 
 		posts.push(newUser);
 		res.status(201).json({ messsage: "User has been registered" });
@@ -95,7 +125,7 @@ app.post('/register', async (req, res) => {
 })
 
 
-// Middlewares
+// Middleware
 function authenticationToken(req, res, next) {
 	const authHeader = req.headers['authorization'];
 	const token = authHeader && authHeader.split(' ')[1];
@@ -112,5 +142,3 @@ function authenticationToken(req, res, next) {
 	})
 }
 
-// Yo finish the video dud: 
-// JWT Authentication Tutorial - Node.js [18:54]
